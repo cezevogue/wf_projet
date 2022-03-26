@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Matiere;
 use App\Entity\Product;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,6 +19,15 @@ class ProductType extends AbstractType
         $builder
             ->add('title',TextType::class)
             ->add('price', NumberType::class)
+            ->add('matieres', EntityType::class,[
+                'class'=>Matiere::class,
+                'choice_label'=>'name',
+                'required'=>false,
+                'multiple'=>true,
+                'attr'=>[
+                    'class'=>'select2 js-example-basic-multiple  form-control'
+                ]
+            ])
             ->add('valider', SubmitType::class)
         ;
     }
