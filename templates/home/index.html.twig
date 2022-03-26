@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    {{ form(form) }}
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+        <tr>
+
+
+
+            <th scope="row">{{ product.id }}</th>
+            <td>{{ product.title }}</td>
+            <td>{{ product.price  }} €</td>
+            <td><a href="{{ path('edit', {'id': product.id}) }}" class="btn btn-danger">
+                    modifier
+                </a><a href="{{ path('deleteProduct', {'id': product.id}) }}" class="btn btn-danger">
+                    supprimer
+                </a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
